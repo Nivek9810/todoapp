@@ -1,0 +1,17 @@
+<ion-header>
+  <ion-toolbar color="warning">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Materias</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item-divider>
+      <ion-label>Materias 2019-1</ion-label>
+    </ion-item-divider>
+    <ion-item *ngFor="let subject of subjects"><ion-label>{{ subject.nombre }}</ion-label></ion-item>
+  </ion-list>
+</ion-content>

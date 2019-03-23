@@ -1,0 +1,50 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
+    <ion-title>
+      Detalles
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  <ion-list lines="full" *ngIf="todo">
+    <ion-list *ngIf="subjects">
+      <ion-radio-group [(ngModel)]="todo.subject">
+        <ion-list-header>
+          <ion-label>Materia</ion-label>
+        </ion-list-header>
+
+        <ion-item *ngFor="let subject of subjects">
+          <ion-label>{{ subject.nombre }}</ion-label>
+          <ion-radio slot="start" [value]="subject.id" checked></ion-radio>
+        </ion-item>
+
+      </ion-radio-group>
+    </ion-list>
+    <ion-item>
+      <ion-label position="floating">Tarea</ion-label>
+      <ion-input required type="text" [(ngModel)]="todo.task"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">Descripción</ion-label>
+      <ion-textarea [(ngModel)]="todo.description" rows="3" cols="10" placeholder="Me gustarían más detalles...">
+      </ion-textarea>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Prioridad</ion-label>
+      <ion-input required type="number" placeholder="Prioridad" [(ngModel)]="todo.priority"></ion-input>
+    </ion-item>
+  </ion-list>
+  <ion-button expand="full" (click)="saveTodo()">Guardar</ion-button>
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed" color="danger" *ngIf="todoId">
+    <ion-fab-button routerLink="/" routerDirection="forward" color="danger" (click)="onRemove(todoId)">
+      <ion-icon name="trash"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>
